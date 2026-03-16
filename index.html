@@ -413,18 +413,28 @@ eidDayMsg.style.bottom="120px";
 }
 
 },1000);
-  window.onload = function(){
+window.onload = function(){
 
 var params = new URLSearchParams(window.location.search);
 var sender = params.get("name");
 
 if(sender){
-document.getElementById("eidText").innerHTML =
-sender + " wishes you Advance Eid Mubarak 🌙";
-}
+
+nameInput.value = sender;
+
+var wishText = sender + " wishes you Advance Eid Mubarak 🎉";
+typeWords(wishText,wish,120);
+
+var q = quotes[Math.floor(Math.random()*quotes.length)];
+typeWords(q,randomQuote,120);
+
+typeWords("Once again Happy Eid Mubarak in Advance by "+sender,ending,120);
+
+shareBtn.style.display="inline";
 
 }
 
+}
 </script>
 
 </body>
