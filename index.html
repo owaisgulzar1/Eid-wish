@@ -187,6 +187,10 @@ text-shadow:0 0 10px black;
 
 <h1 id="eidText">Advance Eid Mubarak</h1>
 
+<input type="text" id="nameInput" placeholder="Enter your name">
+
+<button onclick="share()">Share with Friends</button>
+
 <div class="creator" id="creator"></div>
 
 <div class="quote" id="quote">
@@ -243,7 +247,27 @@ with your own name.
 <div id="eidDayMsg">Eid Mubarak to all of you<br>By Owais Gulzar</div>
 
 <script>
+<script>
 
+var params = new URLSearchParams(window.location.search);
+var name = params.get("name");
+
+if(name){
+document.getElementById("eidText").innerHTML =
+name + " wishes you Advance Eid Mubarak 🌙";
+}
+
+function share(){
+
+var user=document.getElementById("nameInput").value;
+
+var link="https://owaisgulzar1.github.io/Eid-wish/?name="+user;
+
+window.open("https://api.whatsapp.com/send?text="+link);
+
+}
+
+</script>
 /* word animation */
 
 function typeWords(text,element,speed,callback){
