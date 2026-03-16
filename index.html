@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Advance Eid Mubarak</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+text-align:center;
+color:white;
+overflow-x:hidden;
+
+background:
+linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),
+url("https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa");
+background-size:cover;
+background-position:center;
+min-height: 100vh;
+}
+
+/* moons */
+
+.halfMoon{
+position:fixed;
+width:120px;
+height:120px;
+background:white;
+border-radius:50%;
+box-shadow:0 0 30px white;
+opacity:0.25;
+}
+
+.halfMoon1{top:40px; left:10%;}
+.halfMoon2{top:60px; left:80%;}
+.halfMoon3{top:120px; left:30%;}
+.halfMoon4{top:140px; left:60%;}
+
+/* heading */
+
+#eidText{
+font-size:150px;
+margin-bottom: 0cm;
+font-weight:bold;
+color:#00ffcc;
+letter-spacing:3px;
+text-shadow:3px 3px 0 #008b8b,6px 6px 12px black;
+}
+
+.creator{
+font-size:80px;
+font-weight:bold;
+color:#ff0000;
+display:none;
+text-shadow:3px 3px 0 #008b8b,6px 6px 12px black;
+}
+
+/* quotes */
+
+.quote{
+font-size:70px;
+color:#ffd700;
+max-width:700px;
+margin:auto;
+margin-top:10px;
+line-height:1.5;
+display:none;
+}
+
+/* date */
+
+.date{
+font-size:60px;
+font-weight: 800;
+color:#00f7ff;
+margin-top:10px;
+display:none;
+text-shadow:3px 3px 0 #080808,6px 6px 12px black;
+}
+/* day */
+.day{font-size:70px;
+font-family: Helvetica;
+font-weight:900;
+color:#2bff00;
+margin-top:10px;
+letter-spacing: 0.4cm;
+display:none;
+}
+
+/* countdown */
+
+.countdownBox{
+display:flex;
+justify-content:center;
+gap:10px;
+margin-top:12px;
+flex-wrap:wrap;
+display:none;
+}
+
+.timeBox{
+background:rgba(0,0,0,0.6);
+padding:10px 15px;
+border-radius:20px;
+box-shadow:0 0 10px gold;
+}
+
+.timeBox span{
+font-size:70px;
+font-weight:bold;
+color:#ffffff;
+display:block;
+}
+
+.timeBox p{
+margin:0;
+font-size:20px;
+color:#99ff00;
+}
+
+/* wish section */
+
+.sendText,input,button{
+font-size:40px;
+color:#e405b0;
+font-weight: 510;
+display:none;
+margin-top:10px;
+}
+
+#wish{
+font-size:75px;
+color:#ffffff;
+margin-top:20px;
+}
+
+#randomQuote{
+font-size:80px;
+color:#fbff00;
+margin-top:10px;
+}
+
+.ending{
+font-size:55px;
+color:#00ffee;
+margin-top:20px;
+margin-bottom: 0.2cm;
+}
+
+/* rain */
+
+.rain{
+position:fixed;
+top:-50px;
+font-size:24px;
+animation:rainFall linear infinite;
+}
+
+@keyframes rainFall{
+0%{transform:translateY(-50px)}
+100%{transform:translateY(100vh)}
+}
+
+/* Eid Day Message */
+
+#eidDayMsg{
+position:fixed;
+bottom:-200px;
+width:100%;
+font-size:42px;
+color:gold;
+font-weight:bold;
+text-shadow:0 0 10px black;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="halfMoon halfMoon1"></div>
+<div class="halfMoon halfMoon2"></div>
+<div class="halfMoon halfMoon3"></div>
+<div class="halfMoon halfMoon4"></div>
+
+<h1 id="eidText"></h1>
+
+<div class="creator" id="creator"></div>
+
+<div class="quote" id="quote">
+May Allah fill your life with happiness,bring peace to your heart,
+accept all your prayers,bless your family with joy,
+and grant you endless success.
+</div>
+
+<div class="date" id="date">Eid will be on 21st March</div>
+
+<div class="day">SATURDAY</div>
+
+<div class="countdownBox" id="countdownBox">
+
+<div class="timeBox">
+<span id="days"></span>
+<p>Days</p>
+</div>
+
+<div class="timeBox">
+<span id="hours"></span>
+<p>Hours</p>
+</div>
+
+<div class="timeBox">
+<span id="minutes"></span>
+<p>Minutes</p>
+</div>
+
+<div class="timeBox">
+<span id="seconds"></span>
+<p>Seconds</p>
+</div>
+
+</div>
+
+<div class="sendText" id="sendText">
+Send Advance Eid Mubarak wishes to your friends <br>
+with your own name.
+</div>
+
+<input id="nameInput" placeholder="Enter your name">
+<br>
+
+<button onclick="createWish()">Create Wish</button>
+
+<div id="wish"></div>
+<div id="randomQuote"></div>
+
+<button id="shareBtn" onclick="share()">Share with Friends</button>
+
+<div class="ending" id="ending"></div>
+
+<div id="eidDayMsg">Eid Mubarak to all of you<br>By Owais Gulzar</div>
+
+<script>
+
+/* word animation */
+
+function typeWords(text,element,speed,callback){
+
+var words=text.split(" ");
+var i=0;
+
+element.innerHTML="";
+
+var inter=setInterval(function(){
+
+element.innerHTML+=words[i]+" ";
+i++;
+
+if(i>=words.length){
+clearInterval(inter);
+if(callback) callback();
+}
+
+},speed);
+
+}
+
+/* sequence */
+
+typeWords("ADVANCE EID MUBARAK",eidText,120,function(){
+
+creator.style.display="block";
+
+typeWords("By Owais Gulzar",creator,120,function(){
+
+quote.style.display="block";
+document.querySelector(".day").style.display="block";
+date.style.display="block";
+countdownBox.style.display="flex";
+sendText.style.display="block";
+nameInput.style.display="inline";
+document.querySelector("button").style.display="inline";
+
+/* quote animation */
+
+var qtext=quote.innerText;
+typeWords(qtext,quote,90);
+
+});
+
+});
+
+/* countdown */
+
+var eidDate=new Date("March 21 2026").getTime();
+
+setInterval(function(){
+
+var now=new Date().getTime();
+
+var distance=eidDate-now;
+
+var d=Math.floor(distance/(1000*60*60*24));
+var h=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+var m=Math.floor((distance%(1000*60*60))/(1000*60));
+var s=Math.floor((distance%(1000*60))/1000);
+
+days.innerHTML=d;
+hours.innerHTML=h;
+minutes.innerHTML=m;
+seconds.innerHTML=s;
+
+},1000);
+
+/* random quotes */
+
+var quotes=[
+"May Allah bless your home with happiness and peace",
+"Wishing you joy and success in every step of life",
+"May this Eid bring new hopes and blessings",
+"May Allah accept your prayers and fill your heart",
+"Peace prosperity and countless blessings"
+];
+
+/* create wish */
+
+function createWish(){
+
+var name=nameInput.value;
+
+if(name==""){alert("Enter your name");return;}
+
+var wishText=name+" wishes you Advance Eid Mubarak 🎉";
+
+typeWords(wishText,wish,120);
+
+var q=quotes[Math.floor(Math.random()*quotes.length)];
+
+typeWords(q,randomQuote,120);
+
+shareBtn.style.display="inline";
+
+typeWords("Once again Happy Eid Mubarak in Advance by "+name,ending,120);
+
+}
+/* share */
+
+function share(){
+
+var name = document.getElementById("nameInput").value;
+
+if(name==""){
+alert("Please enter your name first");
+return;
+}
+
+var link="https://yourusername.github.io/eid-wish/";
+
+var text=name+" wishes you Advance Eid Mubarak 🎉\n\nOpen this Eid wish page 👇\n"+link;
+
+window.open("https://wa.me/?text="+encodeURIComponent(text));
+
+}
+/* falling stars hearts */
+
+function createRain(){
+
+var arr=["⭐","❤️"];
+
+var el=document.createElement("div");
+
+el.className="rain";
+
+el.innerHTML=arr[Math.floor(Math.random()*arr.length)];
+
+el.style.left=Math.random()*100+"vw";
+
+el.style.animationDuration=(3+Math.random()*5)+"s";
+
+document.body.appendChild(el);
+
+setTimeout(function(){el.remove();},8000);
+
+}
+
+setInterval(createRain,400);
+
+/* Eid Day Slide */
+
+setInterval(function(){
+
+var now=new Date().getTime();
+
+if(now>=eidDate){
+
+eidDayMsg.style.transition="2s";
+eidDayMsg.style.bottom="120px";
+
+}
+
+},1000);
+
+</script>
+
+</body>
+</html>
