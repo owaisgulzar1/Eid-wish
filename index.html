@@ -123,7 +123,7 @@ color:#99ff00;
 /* wish section */
 
 .sendText,input,button{
-font-size:40px;
+font-size:50px;
 color:#e405b0;
 font-weight: 510;
 display:none;
@@ -185,7 +185,7 @@ text-shadow:0 0 10px black;
 <div class="halfMoon halfMoon3"></div>
 <div class="halfMoon halfMoon4"></div>
 
-<h1 id="eidText"></h1>
+<h1 id="eidText">Advance Eid Mubarak</h1>
 
 <div class="creator" id="creator"></div>
 
@@ -352,15 +352,15 @@ function share(){
 var name = document.getElementById("nameInput").value;
 
 if(name==""){
-alert("Please enter your name");
+alert("Enter your name");
 return;
 }
 
-var link="https://owaisgulzar1.github.io/Eid-wish/";
+var link="https://owaisgulzar1.github.io/Eid-wish/?name="+name;
 
-var text = name + " wishes you Advance Eid Mubarak 🌙✨\n\nOpen this Eid wish page 👇\n" + link;
+var text=name+" wishes you Advance Eid Mubarak 🌙\nOpen this page:\n"+link;
 
-window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(text),"_blank");
+window.open("https://api.whatsapp.com/send?text="+encodeURIComponent(text));
 
 }
 /* falling stars hearts */
@@ -401,6 +401,17 @@ eidDayMsg.style.bottom="120px";
 }
 
 },1000);
+  window.onload = function(){
+
+var params = new URLSearchParams(window.location.search);
+var sender = params.get("name");
+
+if(sender){
+document.getElementById("eidText").innerHTML =
+sender + " wishes you Advance Eid Mubarak 🌙";
+}
+
+}
 
 </script>
 
