@@ -169,8 +169,8 @@ animation:rainFall linear infinite;
 position:fixed;
 bottom:-180px;
 width:100%;
-font-size:62px;
-color:green;
+font-size:80px;
+color:red;
 font-weight:bold;
 text-shadow:0 0 10px black;
 }
@@ -199,7 +199,6 @@ and grant you endless success.
 
 <div class="day">SATURDAY</div>
 
-<div class="countdownBox" id="countdownBox">
 
 <div class="timeBox">
 <span id="days"></span>
@@ -303,27 +302,6 @@ typeWords(qtext,quote,90);
 
 });
 
-/* countdown */
-
-var eidDate=new Date("March 21 2026").getTime();
-
-setInterval(function(){
-
-var now=new Date().getTime();
-
-var distance=eidDate-now;
-
-var d=Math.floor(distance/(1000*60*60*24));
-var h=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-var m=Math.floor((distance%(1000*60*60))/(1000*60));
-var s=Math.floor((distance%(1000*60))/1000);
-
-days.innerHTML=d;
-hours.innerHTML=h;
-minutes.innerHTML=m;
-seconds.innerHTML=s;
-
-},1000);
 
 /* random quotes */
 
